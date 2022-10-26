@@ -2,11 +2,13 @@ import React from 'react';
 import './App.css';
 import {Acordion} from "./Acordion/Acordion";
 import {Rating} from "./Rating/Rating";
+import OnOff from "./OnOff";
 
 function App() {
     console.log("App rendering")
     return (
         <div>
+            <OnOff/>
             <PageTitle title={"This is APP component"}/>
             <PageTitle title={"My friends"}/>
             Article 1

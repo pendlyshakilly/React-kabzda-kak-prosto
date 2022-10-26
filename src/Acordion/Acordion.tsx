@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 
 type accordionPropsType = {
     titleValue: string,
@@ -8,17 +8,15 @@ type accordionPropsType = {
 export function Acordion(props: accordionPropsType) {
     console.log("Acordion rendering")
 
-       if(props.collapsed === true) {
-        return <Acordiontitle title={props.titleValue}/>
-       }else{
-        return(
-           <div>
-            <Acordiontitle title={props.titleValue}/>
-           <Acordionbody/>
-           </div>
-               )
-       }
+    let [collapsed, setColapsed] = useState(false)
 
+    return <div>
+
+        <Acordiontitle title={props.titleValue}/>
+        <button onClick={() => {setColapsed(!collapsed)}}>TOGGLE</button>
+        { !collapsed && <Acordionbody/>}
+
+    </div>
 
 }
 
