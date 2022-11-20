@@ -3,30 +3,32 @@ import React, {useState} from "react";
 type accordionPropsType = {
     titleValue: string,
     collapsed: boolean
+    setCollapsed:  React.Dispatch<React.SetStateAction<boolean>>
 }
 
 export function Acordion(props: accordionPropsType) {
     console.log("Acordion rendering")
 
-    let [collapsed, setColapsed] = useState(false)
+
 
     return <div>
 
-        <Acordiontitle title={props.titleValue}/>
-        <button onClick={() => {setColapsed(!collapsed)}}>TOGGLE</button>
-        { !collapsed && <Acordionbody/>}
+        <Acordiontitle title={props.titleValue} onClick={() => {props.setCollapsed(!props.collapsed)}} collapsed={props.collapsed}/>
+        { !props.collapsed && <Acordionbody/>}
 
     </div>
 
 }
 
 type accordionTitlePropsType = {
-    title: string;
-}
+     title: string;
+    onClick: (value: React.SetStateAction<boolean>) => void
+    collapsed: boolean
+ }
 
 function Acordiontitle(props: accordionTitlePropsType) {
     console.log("Acordiontitle rendering")
-    return <h3>-- {props.title} --</h3>
+    return <h3 onClick={() => {props.onClick(!props.collapsed)}}>-- {props.title} --</h3>
 };
 
 function Acordionbody() {
